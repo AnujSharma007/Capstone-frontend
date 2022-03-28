@@ -23,10 +23,6 @@ import Login from '../login';
 import SignUp from '../signUp';
 import { NavLink } from "react-router-dom";
 import authService from "../service/auth.service";
-
-
-
-
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -91,33 +87,25 @@ const useStyles = makeStyles((theme) => ({
     margin: "20px",
   },
 }));
-
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
-
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
-
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
-
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -133,7 +121,6 @@ export default function PrimarySearchAppBar() {
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
-
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
@@ -174,7 +161,6 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
-
   return (
     <div className={classes.grow}>
       <AppBar position="static">
@@ -190,7 +176,7 @@ export default function PrimarySearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
             UpGrad E-Shop
           </Typography>
-
+          
           {!authService.isLoggedIn() && (
             <>
               <NavLink className={classes.link} to="/login">
@@ -231,7 +217,6 @@ export default function PrimarySearchAppBar() {
               </NavLink>
             </>
           )}
-
           {authService.isLoggedIn() && (
             <Button variant='contained' color='secondary' onClick={authService.doLogout}>Logout</Button>
           )}
@@ -240,3 +225,4 @@ export default function PrimarySearchAppBar() {
     </div>
   );
 }
+
